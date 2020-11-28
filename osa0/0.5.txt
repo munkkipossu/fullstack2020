@@ -1,0 +1,14 @@
+note left of selain: Käyttäjä menee sivulle\nhttps://fullstack-exampleapp.herokuapp.com/spa
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa
+palvelin-->selain: STATUS 200, HTML-koodi
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: STATUS 200, main.css
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa.js
+palvelin-->+selain: STATUS 200, spa.js
+
+note over selain: selain alkaa suorittamaan main.js javascriptia
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: STATUS 200, data.json
+
+note over selain: selain suorittaa tapahtumankäsittelijän, joka\npäivittää HTML:ään kaikki notes:it data.json:ista\nDOMin avulla (käyttäen redrawNotes funktiota)
