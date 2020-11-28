@@ -1,0 +1,21 @@
+note left of selain: Käyttäjä kirjoittaa tekstikenttään jotain ja painaa nappia *tallenna*
+note over selain: Selain käsittelee form:in oletusarvoisesti
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+note right of palvelin: palvelin tallentaa lähetetyn tiedon
+palvelin-->selain: STATUS 302, Location: /notes
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin-->selain: STATUS 200, HTML-koodi
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: STATUS 200, main.css
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin-->+selain: STATUS 200, main.js
+
+note over selain: selain alkaa suorittamaan main.js javascriptia
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+
+note right of palvelin: palvelin lähettää kaikki notes:it\n(sisältäen käyttäjänä lähettämän tiedon)
+
+palvelin-->selain: STATUS 200, data.json
+
+note over selain: selain suorittaa tapahtumankäsittelijän, joka \n päivittää HTML:ään kaikki data.json:in tiedot
